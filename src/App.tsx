@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock3, Compass, MapPin, Navigation, ParkingSquare, UtensilsCrossed, Hotel, Camera, Info, ChevronRight, Leaf, Trees, Car, CalendarDays, Star, TrainFront, MapPinned, Fish, Coffee, BedDouble, Minus } from 'lucide-react';
+import { ArrowRight, Clock3, Compass, MapPin, Navigation, ParkingSquare, UtensilsCrossed, Hotel, Camera, Info, ChevronRight, Leaf, Trees, Car, CalendarDays, Star, TrainFront, MapPinned, Fish, Coffee, BedDouble, Minus, Menu, X } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import { useMemo, useState } from 'react';
@@ -255,6 +255,7 @@ const defaultIcon = L.icon({
 
 function App() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const routeMarkers = useMemo(() => [
     { label: '耒阳城区', position: [28.4169, 113.1338] },
@@ -421,7 +422,7 @@ function App() {
                 <a key={item} href={`#${item}`} className="transition hover:text-forest">{item}</a>
               ))}
             </div>
-            <div className="flex items-center gap-4">
+            <div className="hidden items-center gap-4 md:flex">
               <button
                 onClick={exportPdf}
                 className="inline-flex items-center gap-2 rounded-none border border-forest bg-transparent px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-forest transition hover:bg-[#18362f] hover:text-white"
@@ -433,7 +434,27 @@ function App() {
                 <ArrowRight size={14} />
               </button>
             </div>
+            <button
+              className="inline-flex items-center justify-center rounded-none border border-forest p-2 text-forest md:hidden"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </nav>
+          {menuOpen && (
+            <div className="border-t border-black/10 bg-[#f7f4ef] md:hidden">
+              <div className="mx-auto flex max-w-7xl flex-col px-4 py-4 text-sm text-ink/80">
+                {navItems.map((item) => (
+                  <a key={item} href={`#${item}`} className="py-2 border-b border-black/5 last:border-b-0" onClick={() => setMenuOpen(false)}>{item}</a>
+                ))}
+                <div className="mt-3 flex gap-3">
+                  <button onClick={exportPdf} className="flex-1 border border-forest bg-transparent px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-forest">导出 PDF</button>
+                  <button className="flex-1 border border-forest bg-forest px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white">开始导航</button>
+                </div>
+              </div>
+            </div>
+          )}
         </header>
 
         <main>

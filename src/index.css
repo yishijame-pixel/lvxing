@@ -102,3 +102,35 @@ a {
     page-break-before: always;
   }
 }
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  .min-h-screen {
+    min-height: 100vh;
+  }
+
+  section[id='路线'] h2,
+  section[id='行程'] h2,
+  section[id='目的地'] h2,
+  section[id='地图'] h2,
+  section[id='美食'] h2,
+  section[id='住宿'] h2,
+  section[id='国庆活动'] h2,
+  section[id='图集'] h2,
+  section[id='实用信息'] h2,
+  section[id='返程提醒'] h2 {
+    font-size: 2.2rem !important;
+    line-height: 1.1;
+  }
+
+  .grid.gap-5.md\:grid-cols-2.xl\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .columns-1.sm\:columns-2.lg\:columns-3 {
+    columns: 1;
+  }
+}
