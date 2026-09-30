@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Noto Sans SC', 'Inter', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1a1d1b;
+  background: #f7f4ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(96, 114, 104, 0.05), transparent 30%),
+    linear-gradient(180deg, #f8f4ef 0%, #f1eee8 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: #edf3ee;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #f7f4ef;
+  color: #1a1d1b;
+}
+
+::selection {
+  background: rgba(31, 53, 45, 0.2);
+}
+
+#pdf-export-root {
+  min-height: 100vh;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  header,
+  footer,
+  button,
+  .leaflet-container,
+  .fixed,
+  .group button,
+  [data-lightbox] {
+    display: none !important;
+  }
+
+  main,
+  section,
+  article,
+  div {
+    break-inside: avoid;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: none !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+}
